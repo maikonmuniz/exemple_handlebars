@@ -4,11 +4,11 @@ const app = express();
 
 
 const hbs = exphbs.create({
-    partialsDir: ['views/partials']
+    partialsDir: ['views/partials'],
 })
 
 
-app.engine('handlebars', exphbs.engine())
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars');  
 
 
@@ -32,10 +32,6 @@ app.get('/dashboard', (req, res) => {
 })
 
 
-app.get('/form', (req, res) => {
-    res.render('formulario');
-});
-
 app.get('/post', (req, res) => {
 
     const post = {
@@ -48,19 +44,6 @@ app.get('/post', (req, res) => {
     res.render('blogpost', {post})
 })
 
-app.get('/blog', (req, res) => {
-
-    const post = {
-
-                title:    'Aprender node js',
-                category: 'JavaScript',
-                body:     'Este artigo----- bla, bla, bla',
-                comments: 1,
-
-    }
-
-    res.render('blog', {post})
-})
 
 app.get('/posts', (req, res) => {
     const posts = [
