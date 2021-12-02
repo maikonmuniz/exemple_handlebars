@@ -1,7 +1,11 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const axios = require("axios")
 const app = express();
 
+// axios.get("http://127.0.0.1:3000/movies/index").then(function(resposta){
+//     console.log(resposta.data)
+// })
 
 const hbs = exphbs.create({
     partialsDir: ['views/partials'],
@@ -11,6 +15,8 @@ const hbs = exphbs.create({
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars');  
 
+
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
 
@@ -68,6 +74,6 @@ app.get('/posts', (req, res) => {
     res.render('blog', { posts }) 
 })
 
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log('App funcionando');
 });
